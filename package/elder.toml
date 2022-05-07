@@ -1,0 +1,5 @@
+InitAsElder=true
+Bind="[::]:9333"
+TwinsBind="[::]:9222"
+LogPath="./elder.log"
+LogLevel="debug"

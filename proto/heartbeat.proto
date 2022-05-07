@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package = ".;proto";
+
+package twins;
+
+service Twins {
+    // elder tells little I'm alive
+    rpc Heartbeat(RequestHeartbeat) returns (ResponseHeartbeat) {}
+    rpc Finish(Request) returns (Empty) {}
+}
+
+message Empty {
+
+}
+
+message Request {
+
+}
+
+message RequestHeartbeat {
+    int64 timestamp = 1;
+}
+
+message ResponseHeartbeat {
+    bool isElderNow = 1;
+}

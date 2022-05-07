@@ -1,0 +1,5 @@
+InitAsElder=false
+Bind="[::]:9222"
+TwinsBind="[::]:9333"
+LogPath="./little.log"
+LogLevel="debug"
