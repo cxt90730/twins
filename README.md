@@ -5,8 +5,8 @@ A simple master/slave architecture based on GRPC implementation
 ## Add your task
 
 1. Create `your_own_task.go` file under the directory `task`
-2. Implement three interfaces `Name`, `Run`, `Stop`
-3. Register your task when `init()` is called
+2. Implement all interfaces.
+3. Register your task when `RegisterTask()` is called
 
 ## Note
 

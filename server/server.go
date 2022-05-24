@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/journeymidnight/log"
 	"time"
+	"twins/task"
 )
 
 var AsElder bool
@@ -37,7 +38,8 @@ func NewTwinsServer(confPath string) *TwinsServer {
 		SwitchCh:    make(chan bool),
 		Logger:      logger,
 	}
-
+	task.TaskConfDir = conf.TaskConfDir
+	task.TaskLogDir = conf.TaskLogDir
 	return s
 }
 

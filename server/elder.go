@@ -15,12 +15,27 @@ func (s *TwinsServer) runAsElder() {
 		return
 	}
 	AsElder = true
-	for name, t := range task.LoadAllTasks() {
+	taskMap := task.LoadAllTasks()
+	if len(taskMap) == 0 {
+
+	}
+	for name, t := range taskMap {
 		s.Logger.Info("task", name, "start to run.")
 		go func(t task.Task) {
-			err := t.Run()
+			err := task.ReadTaskConfig(t)
 			if err != nil {
-				s.Logger.Error("task", t.Name(), "error:", err)
+				panic("load task config " + t.Name() + " failed:" + err.Error())
+			}
+			if t.Enabled() {
+				err = t.Load()
+				if err != nil {
+					s.Logger.Error("task", t.Name(), "load error:", err)
+					panic(err)
+				}
+				err = t.Run()
+				if err != nil {
+					s.Logger.Error("task", t.Name(), "run error:", err)
+				}
 			}
 		}(t)
 	}
